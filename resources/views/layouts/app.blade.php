@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -71,10 +73,31 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <br>
+        <div class="container">
+            @auth
+            <div class="row">
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        @foreach ($channels as $item)
+                            <li class="list-group-item">
+                                {{ $item->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    @yield('content')
+                </div> 
+            </div>
+            @else
+                <main class="py-4 container">
+                    @yield('content')
+                </main>    
+            @endauth
+        </div>
+        
     </div>
+    @yield('js')
 </body>
 </html>
