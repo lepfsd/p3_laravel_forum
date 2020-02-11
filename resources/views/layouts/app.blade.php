@@ -78,13 +78,21 @@
             @auth
             <div class="row">
                 <div class="col-md-4">
-                    <ul class="list-group">
-                        @foreach ($channels as $item)
-                            <li class="list-group-item">
-                                {{ $item->name }}
-                            </li>
-                        @endforeach
-                    </ul>
+                    <a href="{{ route('discussion.create') }}" style="width:100%; color:#fff" class="btn btn-info my-2">add discussion</a>
+                    <div class="card">
+                        <div class="card-header">
+                            channels
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($channels as $item)
+                                    <li class="list-group-item">
+                                        {{ $item->name }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     @yield('content')

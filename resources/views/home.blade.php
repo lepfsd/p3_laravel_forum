@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="d-flex justify-content-end mb-2">
-    <a href="{{ route('discussion.create')}}" class="btn btn-success ">add a discussion</a>
-</div>
+
 <div class="card">
     <div class="card-header">Dashboard</div>
 
@@ -14,7 +12,7 @@
             </div>
         @endif
 
-        You are logged in!
+        <a href="{{ route('discussion.index') }}" style="color:#fff" class="btn btn-info my-2">discussions</a>
     </div>
 </div>
 @endsection
