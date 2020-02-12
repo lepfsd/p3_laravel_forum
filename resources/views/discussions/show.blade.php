@@ -27,6 +27,9 @@
                 <img src="{{ URL::to('/') }}/images/myimage.jpeg" alt="" style="border-radius: 50%" width="40px" height="40px">
                 <strong class="my-2"> {{ $reply->owner->name }} </strong>
             </div>
+            <div class="float-right">
+                <button type="submit" class="btn btn-sm btn-warning">mark as best reply</button>
+            </div>
         </div>
         <div class="card-body">
             {!! $reply->content !!}

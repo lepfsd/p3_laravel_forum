@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateDiscusionRequest;
 use App\Discussion;
+use App\Reply;
 
 class DiscussionController extends Controller
 {
@@ -106,5 +107,14 @@ class DiscussionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function reply(Discussion $discussion, Reply $reply)
+    {
+        $discussion->markAsBestReply($reply);
+
+        session()->flash('success', 'marked as best reply');
+
+        return redirect()->back();
     }
 }
