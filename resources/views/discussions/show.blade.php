@@ -16,6 +16,16 @@
         {{ $discussion->title }}
         <hr>
         {!! $discussion->content !!}
+        @if ($discussion->bestReply)
+            <div class="card bg-success my-5" style="color: #fff">
+                <div class="card-header">
+                    best reply
+                </div>
+                <div class="card-body">
+                    {{ $discussion->bestReply->content }}
+                </div>
+            </div>     
+        @endif
     </div>
 </div>
 <hr>
@@ -28,11 +38,21 @@
                 <strong class="my-2"> {{ $reply->owner->name }} </strong>
             </div>
             <div class="float-right">
-                <button type="submit" class="btn btn-sm btn-warning">mark as best reply</button>
+                @if (auth()->user()->id === $discussion->user_id)
+                    <form action="{{ route('discussion.best-reply', ['discussion' => $discussion, 'reply' => $reply->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-warning">mark as best reply</button>
+                    </form>
+                    
+                @endif
+                
             </div>
         </div>
         <div class="card-body">
             {!! $reply->content !!}
+            @if ($discussion->bestReply)
+                <p>has a best reply</p>
+            @endif
         </div>
     </div>
 
